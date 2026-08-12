@@ -88,9 +88,28 @@ const login = async (req, res) => {
   }
 };
 
+// Delete Account API
+const deleteAccount = async (req, res) => {
+  try {
+    const { id } = req.user;
+
+    const deletedUser = await User.findByIdAndDelete(id);
+
+    if (!deletedUser) {
+      return res.status(404).json({ Message: 'User not found' });
+    }
+
+    return res.status(200).json({ Message: 'Account deleted successfully' });
+  } catch (error) {
+    console.error('Delete account error:', error);
+    return res.status(500).json({ Message: 'Failed to delete account', error: error.message });
+  }
+};
+
 module.exports = {
   register,
   login,
+  deleteAccount,
   registerApi: register,
   loginApi: login,
 };
