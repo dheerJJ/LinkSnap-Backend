@@ -4,12 +4,15 @@ const { register, login, deleteAccount } = require('../controllers/authControlle
 const { handlegenerateNewShortURL, handleGetAnalytics } = require('../controllers/url');
 const shortUrlGet = require('../controllers/urlGet');
 const auth = require('../middleware/auth');
+const { handleGenerateQR } = require('../controllers/qrController');
 
 router.post('/register', register);
 router.post('/login', login);
 router.delete('/delete-account', auth, deleteAccount);
-router.post('/url', handlegenerateNewShortURL)
-router.get('/:shortId', shortUrlGet)
-router.get('/analytics/:shortId', handleGetAnalytics)
+router.post('/url', handlegenerateNewShortURL);
+router.get('/qr/:shortId', handleGenerateQR);
+router.get('/analytics/:shortId', handleGetAnalytics);
+router.get('/:shortId', shortUrlGet);
+
 
 module.exports = router; 
