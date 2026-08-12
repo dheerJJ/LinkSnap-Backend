@@ -13,7 +13,10 @@ const handleGenerateQR = async (req, res) => {
 
         const shortUrl = `${process.env.BASE_URL || 'http://localhost:5000'}/${shortId}`;
 
-        const qrBuffer = await QRCode.toBuffer(shortUrl, {
+        // Encode the original destination URL so scanning works from any device
+        const qrData = entry.redirectURL;
+
+        const qrBuffer = await QRCode.toBuffer(qrData, {
             type: 'png',
             width: 300,
             margin: 2,
