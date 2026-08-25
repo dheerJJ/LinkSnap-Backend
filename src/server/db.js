@@ -6,7 +6,7 @@ const uri = MONGODB_URI || 'mongodb://127.0.0.1:27017/linksnap';
 const connection = mongoose
   .connect(uri)
   .then(() => {
-    console.log('MongoDB Connected Successfully:', uri);
+    console.log('MongoDB Connected Successfully');
   })
   .catch((error) => {
     console.error('MongoDB Connection Failed:', error.message);
