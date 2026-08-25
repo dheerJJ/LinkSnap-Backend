@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { MONGODB_URI } = require('./config');
 
-const uri = MONGODB_URI || 'mongodb://127.0.0.1:27017/linksnap';
+const uri = MONGODB_URI;
 
 const connection = mongoose
   .connect(uri)
