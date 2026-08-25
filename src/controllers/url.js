@@ -18,9 +18,14 @@ async function handlegenerateNewShortURL(req, res) {
         shortID = shortId();
     }
 
+    let targetUrl = body.url.trim();
+    if (!/^https?:\/\//i.test(targetUrl)) {
+        targetUrl = `https://${targetUrl}`;
+    }
+
     await URL.create({
         shortId: shortID,
-        redirectURL: body.url,
+        redirectURL: targetUrl,
         visitHistory: [],
     })
 

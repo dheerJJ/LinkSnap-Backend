@@ -17,8 +17,12 @@ const shortUrlGet = async (req, res) => {
         if (!entry) {
             return res.status(404).json({ error: 'Short URL not found' });
         }
+        let target = entry.redirectURL;
+        if (!/^https?:\/\//i.test(target)) {
+            target = `https://${target}`;
+        }
 
-        res.redirect(entry.redirectURL);
+        res.redirect(target);
     } catch (error) {
         console.error('Short URL redirect error:', error);
         return res.status(500).json({ error: 'Internal server error' });

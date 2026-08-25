@@ -17,11 +17,6 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-//shorten url post
-
-app.use("/url", userRoutes)
-app.use("/:shortId", userRoutes)
-
 
 
 // Global Error Handler
